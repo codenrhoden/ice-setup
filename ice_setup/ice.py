@@ -1075,16 +1075,20 @@ class Configure(object):
 
         if parser.has('all'):
             repo_path = parser.get('all')
-            configure_local(repo_path=repo_path)
-            configure_remotes(repo_path=repo_path)
+            configure_local('calamari-server', repo_path=repo_path)
+            configure_local('ceph-deploy', repo_path=repo_path)
+            configure_remotes('ceph', repo_path=repo_path, versioned=True)
+            configure_remotes('calamari-minions', repo_path=repo_path)
 
         elif parser.has('local'):
             repo_path = parser.get('local')
-            configure_local(repo_path=repo_path)
+            configure_local('calamari-server', repo_path=repo_path)
+            configure_local('ceph-deploy', repo_path=repo_path)
 
         elif parser.has('remote'):
             repo_path = parser.get('remote')
-            configure_remotes(repo_path=repo_path)
+            configure_remotes('ceph', repo_path=repo_path, versioned=True)
+            configure_remotes('calamari-minions', repo_path=repo_path)
 
 
 def fqdn_with_protocol():
